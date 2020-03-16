@@ -24,7 +24,7 @@ from taiga.base.db.models.fields import JSONField
 
 class Webhook(models.Model):
     project = models.ForeignKey("projects.Project", null=False, blank=False,
-                                related_name="webhooks")
+                                related_name="webhooks", on_delete=models.CASCADE)
     name = models.CharField(max_length=250, null=False, blank=False,
                             verbose_name=_("name"))
     url = models.URLField(null=False, blank=False, verbose_name=_("URL"))
@@ -36,7 +36,7 @@ class Webhook(models.Model):
 
 class WebhookLog(models.Model):
     webhook = models.ForeignKey(Webhook, null=False, blank=False,
-                                related_name="logs")
+                                related_name="logs", on_delete=models.CASCADE)
     url = models.URLField(null=False, blank=False, verbose_name=_("URL"))
     status = models.IntegerField(null=False, blank=False, verbose_name=_("status code"))
     request_data = JSONField(null=False, blank=False, verbose_name=_("request data"))

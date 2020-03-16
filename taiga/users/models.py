@@ -320,7 +320,8 @@ class Role(models.Model):
     # field causes some circular dependencies, and due to this
     # it can not be serialized in one transactional migration.
     project = models.ForeignKey("projects.Project", null=True, blank=False,
-                                related_name="roles", verbose_name=_("project"))
+                                related_name="roles", verbose_name=_("project"),
+                                on_delete=models.CASCADE)
     computable = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
@@ -340,7 +341,7 @@ class Role(models.Model):
 
 
 class AuthData(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="auth_data")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="auth_data", on_delete=models.CASCADE)
     key = models.SlugField(max_length=50)
     value = models.CharField(max_length=300)
     extra = JSONField()

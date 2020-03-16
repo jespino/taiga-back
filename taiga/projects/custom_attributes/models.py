@@ -40,7 +40,7 @@ class AbstractCustomAttribute(models.Model):
                             verbose_name=_("type"))
     order = models.BigIntegerField(null=False, blank=False, default=timestamp_ms, verbose_name=_("order"))
     project = models.ForeignKey("projects.Project", null=False, blank=False, related_name="%(class)ss",
-                                verbose_name=_("project"))
+                                verbose_name=_("project"), on_delete=models.CASCADE)
     extra = JSONField(blank=True, default=None, null=True)
     created_date = models.DateTimeField(null=False, blank=False, default=timezone.now,
                                         verbose_name=_("created date"))
@@ -102,7 +102,7 @@ class AbstractCustomAttributesValues(OCCModelMixin, models.Model):
 class EpicCustomAttributesValues(AbstractCustomAttributesValues):
     epic = models.OneToOneField("epics.Epic",
                                 null=False, blank=False, related_name="custom_attributes_values",
-                                verbose_name=_("epic"))
+                                verbose_name=_("epic"), on_delete=models.CASCADE)
 
     class Meta(AbstractCustomAttributesValues.Meta):
         verbose_name = "epic custom attributes values"
@@ -118,7 +118,7 @@ class EpicCustomAttributesValues(AbstractCustomAttributesValues):
 class UserStoryCustomAttributesValues(AbstractCustomAttributesValues):
     user_story = models.OneToOneField("userstories.UserStory",
                                       null=False, blank=False, related_name="custom_attributes_values",
-                                      verbose_name=_("user story"))
+                                      verbose_name=_("user story"), on_delete=models.CASCADE)
 
     class Meta(AbstractCustomAttributesValues.Meta):
         verbose_name = "user story custom attributes values"
@@ -134,7 +134,7 @@ class UserStoryCustomAttributesValues(AbstractCustomAttributesValues):
 class TaskCustomAttributesValues(AbstractCustomAttributesValues):
     task = models.OneToOneField("tasks.Task",
                                 null=False, blank=False, related_name="custom_attributes_values",
-                                verbose_name=_("task"))
+                                verbose_name=_("task"), on_delete=models.CASCADE)
 
     class Meta(AbstractCustomAttributesValues.Meta):
         verbose_name = "task custom attributes values"
@@ -150,7 +150,7 @@ class TaskCustomAttributesValues(AbstractCustomAttributesValues):
 class IssueCustomAttributesValues(AbstractCustomAttributesValues):
     issue = models.OneToOneField("issues.Issue",
                                  null=False, blank=False, related_name="custom_attributes_values",
-                                 verbose_name=_("issue"))
+                                 verbose_name=_("issue"), on_delete=models.CASCADE)
 
     class Meta(AbstractCustomAttributesValues.Meta):
         verbose_name = "issue custom attributes values"

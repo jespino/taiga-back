@@ -36,13 +36,16 @@ from taiga.projects.mixins.blocked import BlockedMixin
 class RolePoints(models.Model):
     user_story = models.ForeignKey("UserStory", null=False, blank=False,
                                    related_name="role_points",
-                                   verbose_name=_("user story"))
+                                   verbose_name=_("user story"),
+                                   on_delete=models.CASCADE)
     role = models.ForeignKey("users.Role", null=False, blank=False,
                              related_name="role_points",
-                             verbose_name=_("role"))
+                             verbose_name=_("role"),
+                             on_delete=models.CASCADE)
     points = models.ForeignKey("projects.Points", null=True, blank=False,
                                related_name="role_points",
-                               verbose_name=_("points"))
+                               verbose_name=_("points"),
+                               on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "role points"
@@ -65,7 +68,8 @@ class UserStory(OCCModelMixin, WatchedModelMixin, BlockedMixin, TaggedMixin, Due
                                   default=None, related_name="user_stories",
                                   on_delete=models.SET_NULL, verbose_name=_("milestone"))
     project = models.ForeignKey("projects.Project", null=False, blank=False,
-                                related_name="user_stories", verbose_name=_("project"))
+                                related_name="user_stories", verbose_name=_("project"),
+                                on_delete=models.CASCADE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True,
                               related_name="owned_user_stories", verbose_name=_("owner"),
                               on_delete=models.SET_NULL)
@@ -96,7 +100,8 @@ class UserStory(OCCModelMixin, WatchedModelMixin, BlockedMixin, TaggedMixin, Due
     description = models.TextField(null=False, blank=True, verbose_name=_("description"))
     assigned_to = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                                     default=None, related_name="userstories_assigned_to_me",
-                                    verbose_name=_("assigned to"))
+                                    verbose_name=_("assigned to"),
+                                    on_delete=models.SET_NULL)
     assigned_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True,
                                     default=None, related_name="assigned_userstories",
                                     verbose_name=_("assigned users"))

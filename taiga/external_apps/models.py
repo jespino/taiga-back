@@ -52,11 +52,13 @@ class Application(models.Model):
 class ApplicationToken(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=False,
                                     related_name="application_tokens",
-                                    verbose_name=_("user"))
+                                    verbose_name=_("user"),
+                                    on_delete=models.CASCADE)
 
     application = models.ForeignKey("Application", blank=False, null=False,
                                     related_name="application_tokens",
-                                    verbose_name=_("application"))
+                                    verbose_name=_("application"),
+                                    on_delete=models.CASCADE)
 
     auth_code = models.CharField(max_length=255, null=True, blank=True, default=None)
     token = models.CharField(max_length=255, null=True, blank=True, default=None)

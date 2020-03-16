@@ -43,7 +43,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-from django.core.urlresolvers import RegexURLResolver
+from django.urls import URLResolver
 from django.conf.urls import url, include
 
 from .settings import api_settings
