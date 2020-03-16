@@ -172,7 +172,7 @@ class ProjectAdmin(admin.ModelAdmin):
     actions = [
         "make_public",
         "make_private",
-        "delete_selected"
+        "delete_selected_projects"
     ]
 
     @transaction.atomic
@@ -207,7 +207,7 @@ class ProjectAdmin(admin.ModelAdmin):
         self.message_user(request, _("{count} successfully made private.").format(count=total_updates))
     make_private.short_description = _("Make private")
 
-    def delete_selected(self, request, queryset):
+    def delete_selected_projects(self, request, queryset):
         # NOTE: This must be equal to taiga.projects.models.Project.delete_related_content
         from taiga.events.apps import (connect_events_signals,
                                        disconnect_events_signals)
@@ -235,7 +235,7 @@ class ProjectAdmin(admin.ModelAdmin):
         connect_memberships_signals()
 
         return r
-    delete_selected.short_description = _("Delete selected %(verbose_name_plural)s")
+    delete_selected_projects.short_description = _("Delete selected %(verbose_name_plural)s")
 
 
 # User Stories common admins

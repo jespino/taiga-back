@@ -75,21 +75,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='project',
             name='owner',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='owned_projects', verbose_name='owner'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='owned_projects', verbose_name='owner', on_delete=models.SET_NULL),
             preserve_default=True,
         ),
 
         migrations.AddField(
             model_name='membership',
             name='user',
-            field=models.ForeignKey(blank=True, default=None, to=settings.AUTH_USER_MODEL, null=True, related_name='memberships'),
+            field=models.ForeignKey(blank=True, default=None, to=settings.AUTH_USER_MODEL, null=True, related_name='memberships', on_delete=models.CASCADE),
             preserve_default=True,
         ),
 
         migrations.AddField(
             model_name='membership',
             name='project',
-            field=models.ForeignKey(default=1, to='projects.Project', related_name='memberships'),
+            field=models.ForeignKey(default=1, to='projects.Project', related_name='memberships', on_delete=models.CASCADE),
             preserve_default=False,
         ),
 
@@ -101,7 +101,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='membership',
             name='role',
-            field=models.ForeignKey(related_name='memberships', to='users.Role', default=1),
+            field=models.ForeignKey(related_name='memberships', to='users.Role', default=1, on_delete=models.CASCADE),
             preserve_default=False,
         ),
     ]

@@ -258,8 +258,7 @@ TEMPLATES = [
     },
 ]
 
-
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     "taiga.base.middleware.cors.CorsMiddleware",
     "taiga.events.middleware.SessionIDMiddleware",
 

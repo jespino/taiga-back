@@ -85,27 +85,6 @@ from .relations import *
 from .fields import *
 
 
-def _resolve_model(obj):
-    """
-    Resolve supplied `obj` to a Django model class.
-
-    `obj` must be a Django model class itself, or a string
-    representation of one. Useful in situtations like GH #1225 where
-    Django may not have resolved a string-based reference to a model in
-    another model's foreign key definition.
-
-    String representations should have the format:
-        'appname.ModelName'
-    """
-    if type(obj) == str and len(obj.split(".")) == 2:
-        app_name, model_name = obj.split(".")
-        return apps.get_model(app_name, model_name)
-    elif inspect.isclass(obj) and issubclass(obj, models.Model):
-        return obj
-    else:
-        raise ValueError("{0} is not a Django model".format(obj))
-
-
 def pretty_name(name):
     """Converts 'first_name' to 'First name'"""
     if not name:
@@ -774,7 +753,7 @@ class ModelSerializer((six.with_metaclass(SerializerMetaclass, BaseSerializer)))
             if model_field.remote_field:
                 to_many = isinstance(model_field,
                                      models.fields.related.ManyToManyField)
-                related_model = _resolve_model(model_field.remote_field.to)
+                related_model = model_field.remote_field.related_model
 
                 if to_many and not model_field.remote_field.through._meta.auto_created:
                     has_through_model = True

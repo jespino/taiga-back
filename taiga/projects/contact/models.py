@@ -23,7 +23,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class ContactEntry(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="contact_entries",
-                             verbose_name=_("user"), on_delete=models.SET_NULL)
+                             verbose_name=_("user"), on_delete=models.CASCADE)
 
     project = models.ForeignKey("projects.Project", null=False, blank=False,
                                 related_name="contact_entries", verbose_name=_("project"),
