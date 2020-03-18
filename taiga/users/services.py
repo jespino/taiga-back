@@ -121,7 +121,7 @@ def get_visible_project_ids(from_user, by_user):
     member_perm_conditions = Q(project__anon_permissions__contains=required_permissions)
 
     # Authenticated
-    if by_user.is_authenticated():
+    if by_user.is_authenticated:
         # Calculating the projects wich from_user user is member
         by_user_project_ids = by_user.memberships.values_list("project__id", flat=True)
         # Adding to the condition two OR situations:

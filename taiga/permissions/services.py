@@ -131,7 +131,7 @@ def get_user_project_permissions(user, project, cache="user"):
     is_member = membership is not None
     is_admin = is_member and membership.is_admin
     return calculate_permissions(
-        is_authenticated = user.is_authenticated(),
+        is_authenticated = user.is_authenticated,
         is_superuser =  user.is_superuser,
         is_member = is_member,
         is_admin = is_admin,

@@ -61,7 +61,7 @@ class WebNotificationsViewSet(GenericViewSet):
     resource_model = models.WebNotification
 
     def check_permissions(self, request, obj=None):
-        return obj and request.user.is_authenticated() and \
+        return obj and request.user.is_authenticated and \
                request.user.pk == obj.user_id
 
     def list(self, request):

@@ -318,7 +318,7 @@ class ProjectSerializer(serializers.LightSerializer):
     def get_my_permissions(self, obj):
         if "request" in self.context:
             user = self.context["request"].user
-            return calculate_permissions(is_authenticated=user.is_authenticated(),
+            return calculate_permissions(is_authenticated=user.is_authenticated,
                                          is_superuser=user.is_superuser,
                                          is_member=self.get_i_am_member(obj),
                                          is_admin=self.get_i_am_admin(obj),
@@ -591,7 +591,7 @@ class ProjectLightSerializer(serializers.LightSerializer):
     def get_my_permissions(self, obj):
         if "request" in self.context:
             user = self.context["request"].user
-            return calculate_permissions(is_authenticated=user.is_authenticated(),
+            return calculate_permissions(is_authenticated=user.is_authenticated,
                                          is_superuser=user.is_superuser,
                                          is_member=self.get_i_am_member(obj),
                                          is_admin=self.get_i_am_admin(obj),
