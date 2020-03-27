@@ -92,7 +92,7 @@ class IssueCustomAttribute(AbstractCustomAttribute):
 #######################################################
 
 class AbstractCustomAttributesValues(OCCModelMixin, models.Model):
-    attributes_values = JSONField(null=False, blank=False, default={}, verbose_name=_("values"))
+    attributes_values = JSONField(null=False, blank=False, default=dict, verbose_name=_("values"))
 
     class Meta:
         abstract = True

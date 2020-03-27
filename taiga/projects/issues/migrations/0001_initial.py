@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             name='Issue',
             fields=[
                 ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
-                ('tags', django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), blank=True, default=[], null=True, size=None, verbose_name='tags')),
+                ('tags', django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), blank=True, default=list, null=True, size=None, verbose_name='tags')),
                 ('version', models.IntegerField(default=1, verbose_name='version')),
                 ('is_blocked', models.BooleanField(default=False, verbose_name='is blocked')),
                 ('blocked_note', models.TextField(blank=True, default='', verbose_name='blocked note')),

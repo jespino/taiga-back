@@ -40,9 +40,9 @@ class WebhookLog(models.Model):
     url = models.URLField(null=False, blank=False, verbose_name=_("URL"))
     status = models.IntegerField(null=False, blank=False, verbose_name=_("status code"))
     request_data = JSONField(null=False, blank=False, verbose_name=_("request data"))
-    request_headers = JSONField(null=False, blank=False, verbose_name=_("request headers"), default={})
+    request_headers = JSONField(null=False, blank=False, verbose_name=_("request headers"), default=dict)
     response_data = models.TextField(null=False, blank=False, verbose_name=_("response data"))
-    response_headers = JSONField(null=False, blank=False, verbose_name=_("response headers"), default={})
+    response_headers = JSONField(null=False, blank=False, verbose_name=_("response headers"), default=dict)
     duration = models.FloatField(null=False, blank=False, verbose_name=_("duration"), default=0)
     created = models.DateTimeField(auto_now_add=True)
 

@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('version', models.IntegerField(default=1, verbose_name='version')),
-                ('attributes_values', taiga.base.db.models.fields.JSONField(default={}, verbose_name='attributes_values')),
+                ('attributes_values', taiga.base.db.models.fields.JSONField(default=dict, verbose_name='attributes_values')),
                 ('issue', models.OneToOneField(verbose_name='issue', to='issues.Issue', related_name='custom_attributes_values', on_delete=models.CASCADE)),
             ],
             options={
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('version', models.IntegerField(default=1, verbose_name='version')),
-                ('attributes_values', taiga.base.db.models.fields.JSONField(default={}, verbose_name='attributes_values')),
+                ('attributes_values', taiga.base.db.models.fields.JSONField(default=dict, verbose_name='attributes_values')),
                 ('task', models.OneToOneField(verbose_name='task', to='tasks.Task', related_name='custom_attributes_values', on_delete=models.CASCADE)),
             ],
             options={
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('version', models.IntegerField(default=1, verbose_name='version')),
-                ('attributes_values', taiga.base.db.models.fields.JSONField(default={}, verbose_name='attributes_values')),
+                ('attributes_values', taiga.base.db.models.fields.JSONField(default=dict, verbose_name='attributes_values')),
                 ('user_story', models.OneToOneField(verbose_name='user story', to='userstories.UserStory', related_name='custom_attributes_values', on_delete=models.CASCADE)),
             ],
             options={
