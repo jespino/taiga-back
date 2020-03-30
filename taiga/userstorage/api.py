@@ -37,7 +37,7 @@ class StorageEntriesViewSet(ModelCrudViewSet):
     lookup_field = "key"
 
     def get_queryset(self):
-        if self.request.user.is_anonymous():
+        if self.request.user.is_anonymous:
             return self.model.objects.none()
         return self.request.user.storage_entries.all()
 

@@ -307,7 +307,7 @@ class ProjectSerializer(serializers.LightSerializer):
         if "request" in self.context:
             user = self.context["request"].user
             user_ids = [m.get("id") for m in obj.members_attr if m["id"] is not None]
-            if not user.is_anonymous() and user.id in user_ids:
+            if not user.is_anonymous and user.id in user_ids:
                 return True
 
         return False
@@ -580,7 +580,7 @@ class ProjectLightSerializer(serializers.LightSerializer):
         if "request" in self.context:
             user = self.context["request"].user
             user_ids = [m.get("id") for m in obj.members_attr if m["id"] is not None]
-            if not user.is_anonymous() and user.id in user_ids:
+            if not user.is_anonymous and user.id in user_ids:
                 return True
 
         return False

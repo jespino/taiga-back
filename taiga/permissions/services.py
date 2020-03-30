@@ -27,7 +27,7 @@ def _get_user_project_membership(user, project, cache="user"):
     cache param determines how memberships are calculated trying to reuse the existing data
     in cache
     """
-    if user.is_anonymous():
+    if user.is_anonymous:
         return None
 
     if cache == "user":

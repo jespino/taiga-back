@@ -178,7 +178,7 @@ def get_liked_content_for_user(user):
         - The key is the content_type model
         - The values are list of id's of the different objects liked by the user
     """
-    if user.is_anonymous():
+    if user.is_anonymous:
         return {}
 
     user_likes = {}
@@ -195,7 +195,7 @@ def get_voted_content_for_user(user):
         - The key is the content_type model
         - The values are list of id's of the different objects voted by the user
     """
-    if user.is_anonymous():
+    if user.is_anonymous:
         return {}
 
     user_votes = {}
@@ -212,7 +212,7 @@ def get_watched_content_for_user(user):
         - The key is the content_type model
         - The values are list of id's of the different objects watched by the user
     """
-    if user.is_anonymous():
+    if user.is_anonymous:
         return {}
 
     user_watches = {}
@@ -388,7 +388,7 @@ def get_watched_list(for_user, from_user, type=None, q=None):
     """
 
     from_user_id = -1
-    if not from_user.is_anonymous():
+    if not from_user.is_anonymous:
         from_user_id = from_user.id
 
     sql = sql.format(
@@ -475,7 +475,7 @@ def get_liked_list(for_user, from_user, type=None, q=None):
     """
 
     from_user_id = -1
-    if not from_user.is_anonymous():
+    if not from_user.is_anonymous:
         from_user_id = from_user.id
 
     sql = sql.format(
@@ -567,7 +567,7 @@ def get_voted_list(for_user, from_user, type=None, q=None):
     """
 
     from_user_id = -1
-    if not from_user.is_anonymous():
+    if not from_user.is_anonymous:
         from_user_id = from_user.id
 
     sql = sql.format(

@@ -39,6 +39,10 @@ class CorsMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
+        if "HTTP_ACCESS_CONTROL_REQUEST_METHOD" in request.META:
+            response = http.HttpResponse()
+            self._populate_response(response)
+            return response
         response = self.get_response(request)
         if response is None:
             return None
